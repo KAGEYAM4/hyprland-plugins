@@ -199,9 +199,7 @@ APICALL EXPORT PLUGIN_DESCRIPTION_INFO PLUGIN_INIT(HANDLE handle) {
     success = success && g_pMouseMotionHook->hook();
     success = success && g_pSurfaceSizeHook->hook();
 
-    if (success)
-        HyprlandAPI::addNotification(PHANDLE, "[csgo-vulkan-fix] Initialized successfully! (Anything version)", CHyprColor{0.2, 1.0, 0.2, 1.0}, 5000);
-    else {
+    if (!success) {
         HyprlandAPI::addNotification(PHANDLE, "[csgo-vulkan-fix] Failure in initialization (hook failed)!", CHyprColor{1.0, 0.2, 0.2, 1.0}, 5000);
         throw std::runtime_error("[csgo-vk-fix] Hooks failed");
     }
